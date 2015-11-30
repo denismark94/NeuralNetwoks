@@ -1,26 +1,22 @@
-/**
- * Created by markindi on 03.11.2015.
- */
 public class Neuron {
-    public int[] w;
-    public int b;
+    public int[] input;
+    private int[] w;
+    private int b = 0;
 
-    public Neuron(int[] w, int b) {
+    public void configure(int[] w, int shift) {
         this.w = w;
-        this.b = b;
+        this.b = shift;
     }
 
-    public int sum(int[] p) {
-        int sum = 0;
-        for (int i = 0; i < w.length; i++)
-            sum += w[i] * p[i];
-        for (int i = w.length; i < p.length; i++)
-            sum += p[i];
-        return sum;
+    public int sum() {
+        int result = 0;
+        for (int i = 0; i < input.length; i++)
+            result += w[i] * input[i];
+        return result;
     }
 
-    public int hardlim(int[]p) {
-        if (sum(p)+ b >= 0)
+    public int hardlim() {
+        if (sum() + b > 0)
             return 1;
         else return 0;
     }
